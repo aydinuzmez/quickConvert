@@ -9,45 +9,39 @@
 #    - Date: May 2017
 
 import os
-import re
+import sys
+
+CURRENT_PATH = os.path.abspath(os.path.join(__file__,os.pardir+os.sep+os.pardir))
+TEST_PATH = os.path.join(CURRENT_PATH, "test")
+
 
 class FileSequences(object):
-    def __init__(self):
-        self.in_path = ""
-        self.in_path_name = ""
+    def __init__(self,path):
         self.in_path_name_name = ""
         self.in_path_name_seq_name = ""
         self.in_path_name_ext = ""
-        self.current_path = ""
         self.divide_seq_name = ""
-        self.main_name = str()
-        self.current_path_list = []
-
-    def open(self, path):
-        """
-        :param path: 
-        :return: 
-        """
         self.in_path = path
         self.current_path, self.in_path_name = self.in_path.rsplit(os.sep, 1)
         self.current_path_list = os.listdir(self.current_path)
-
-        print self.in_path
         if os.path.isfile(self.in_path):
-            print self.in_path_name_seq_name
             self.__spell_iterator()
-            self.main_name= self.__divide_path_name(self.in_path_name)
-            #self.__name_sum_seq()
-            #self.__iterator_sequence()
-
+            self.main_name = self.__divide_path_name(self.in_path_name)
         else:
             print "Undefined"
 
-    def convert(self):
-        name = ''.join(self.main_name[0:2])
-        seq_pattern = "%"+str(''.join(self.main_name[2]).__len__())+"d"+self.main_name[3]+self.main_name[4]
-        return name+seq_pattern
-        #print ''.ljust(self.main_name.__len__(), "#")
+
+    def name(self):
+        return ''.join(self.main_name[0:2])
+
+    def format(self):
+        return  "%" + str(''.join(self.main_name[2]).__len__()) + "d"
+
+    def ext(self):
+        return self.main_name[3]+self.main_name[4]
+
+    def digit(self):
+        return self.seq_digit
 
     def __name_sum_seq(self):
         self.seq_name = self.divide_seq_name[:-self.seq_length]
@@ -66,8 +60,9 @@ class FileSequences(object):
                 if i == 0:
                     return None
                 digit.reverse()
-                sequence_number_str = ''.join(digit)
-                divide = (''.join(self.name_spell[0:-i-1]), self.name_spell[-i-1], sequence_number_str, '.', self.in_path_name_ext)
+                self.seq_digit = ''.join(digit)
+
+                divide = (''.join(self.name_spell[0:-i-1]), self.name_spell[-i-1], self.seq_digit, '.', self.in_path_name_ext)
                 #print ''.join(divide[0:2])
                 return divide
             digit.append(spell)
@@ -131,12 +126,9 @@ class FileSequences(object):
         print name_list
 """
 
-#path1 = r"C:\Users\AYDINU\Desktop\Sequences_Test(DELETE)\sh100.0000.exr"
-#path1 = r"C:\Users\AYDINU\Desktop\Sequences_Test(DELETE)\sh1234567 - Copy.exr"
-#path1 = r"C:\Users\AYDINU\Desktop\Sequences_Test(DELETE)"
-# path1 = r"C:\Users\AYDINU\Desktop\Sequences_Test(DELETE)\sh100.0000.exr"
 if __name__ == '__main__':
-    path1 = r"C:\Users\AYDINU\Desktop\Sequences_Test(DELETE)\sh1234567.exr"
-    filesequences1 = FileSequences()
-    filesequences1.open(path1)
-    print filesequences1.convert()
+    #path1 = os.path.join(TEST_PATH,"_ZERO","DOT","sh100.0000.exr")
+    path1 = os.path.join(TEST_PATH,"_SINGLE","alpha.exr")
+    filesequences1 = FileSequences(path1)
+    print filesequences1.name()+filesequences1.format()+filesequences1.ext()
+

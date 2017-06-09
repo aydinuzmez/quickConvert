@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: latin1 -*-
 # Copyright (c) 2012-2015, Anima Istanbul
 #
 # This module is part of anima-tools and is released under the BSD 2
@@ -15,18 +15,15 @@ import sys
 from time import sleep
 import subprocess as sp
 import os
+import re
+from lib.cmd_color import Cmd
 from ffmpeg.fileseq import FileSequences
+import ffmpeg.call as ffmpeg
 
 
 FFMPEG_BIN = "ffmpeg"
 FFMPEG_BIN = "ffmpeg.exe"
 
-def context_menu():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="None", help='This path is giving clicking path')
-    args = parser.parse_args()
-    FF1 = FF(args)
-    FF1.convert()
 
 
 class FF(object):
@@ -36,19 +33,32 @@ class FF(object):
     def convert(self):
         print ("FFmpeg Convert Jpg "+'\n')
         print("File Path: " + self.path )
-        fileseq1 =FileSequences()
-        fileseq1.open(self.path)
-        seq_path = fileseq1.convert()
-        name = str(''.join(fileseq1.main_name[0:2]))
-        print name
-        os.mkdir("jpg")
-        print sp.call("ffmpeg -i " +seq_path+ " jpg/abc-%3d.jpg")
-        sys.stdout.write("ffmpeg -i " +seq_path+ " jpg/abc-%3d.jpg")
-        for i in range(30):
-            sys.stdout.write(".")
-            sleep(0.2)
+        ffmpeg_call1 = ffmpeg.Call(self.path)
+        sp.call(['import','os'],shell=True)
+       # print sp.call("os.system('color')")
+        cmd1 = Cmd()
+        try:
+            os.mkdir("jpg")
+            print sp.call(ffmpeg_call1.call)
+
+        except WindowsError as e:
+            print cmd1.write(e,"red")
+            return
+        except Exception:
+            print cmd1.write("The file isn't support now","red")
+            return
+
+        for i in range(6):
+            sys.stdout.write(cmd1.write("Succesfull","green"))
+            #sleep(0.1)
 
 
+def context_menu():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", type=str, default="None", help='This path is giving clicking path')
+    args = parser.parse_args()
+    FF1 = FF(args)
+    FF1.convert()
 
 """
 command = [FFMPEG_BIN,
