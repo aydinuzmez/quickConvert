@@ -60,6 +60,7 @@ class Ui_quickConvert(object):
         self.size_combo.addItem(_fromUtf8(""))
         self.size_combo.addItem(_fromUtf8(""))
         self.size_combo.addItem(_fromUtf8(""))
+        self.size_combo.addItem(_fromUtf8(""))
         self.file_attribute.addWidget(self.size_combo, 0, 1, 1, 1)
         self.size = QtGui.QLabel(self.path_widget)
         self.size.setObjectName(_fromUtf8("size"))
@@ -109,6 +110,7 @@ class Ui_quickConvert(object):
         self.size_combo.setItemText(0, QtGui.QApplication.translate("quickConvert", "Same", None, QtGui.QApplication.UnicodeUTF8))
         self.size_combo.setItemText(1, QtGui.QApplication.translate("quickConvert", "1920x1080", None, QtGui.QApplication.UnicodeUTF8))
         self.size_combo.setItemText(2, QtGui.QApplication.translate("quickConvert", "1280x720", None, QtGui.QApplication.UnicodeUTF8))
+        self.size_combo.setItemText(3, QtGui.QApplication.translate("quickConvert", "PAL", None, QtGui.QApplication.UnicodeUTF8))
         self.size.setText(QtGui.QApplication.translate("quickConvert", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

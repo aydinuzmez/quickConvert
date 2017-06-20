@@ -32,32 +32,42 @@ class UI(QtGui.QMainWindow,Ui_quickConvert):
         QtGui.QWidget.__init__(self,parent)
         self.ui = Ui_quickConvert()
         self.ui.setupUi(self)
+        self.ui.buttonBox.button(QtGui.QDialogButtonBox.Ok).clicked.connect(self.ok)
+        self.ui.buttonBox.button(QtGui.QDialogButtonBox.Cancel).clicked.connect(sys.exit)
 
-        self.ok_button()
-
-    def path_setEdit(self, path):
+    def path_set_edit(self, path):
         self.ui.path_edit.setText(path)
 
-    def ok_button(self):
-        self.ui.buttonBox.button(QtGui.QDialogButtonBox.Ok).setText("Tamam")
+    def ok(self):
+        arg = {"path": str(self.ui.path_edit.text()),
+               "size": str(self.ui.size_combo.currentText()),
+               "format": str(self.ui.format_combo.currentText()),
+               "folder": str(self.ui.foldername_edit.text())
+               }
 
 
+        #will_open_folder = os.path.join(os.getcwd(),arg["folder"])
+        if os.path.isdir(arg["folder"]):
+            print arg["folder"]
+            print "that file already exists"
+        else:
+            os.mkdir(arg["folder"])
+            ff1 = FFmpeg(self.ui.path_edit.text())
+            ff1.convert()
+            sys.exit()
 
 
-
-class FF(object):
+class FFmpeg(object):
     def __init__(self,args):
-        self.path = args.path
+        self.path = str(args)
 
     def convert(self):
         print ("FFmpeg Convert Jpg "+'\n')
         print("File Path: " + self.path)
         ffmpeg_call1 = ffmpeg.Call(self.path)
-
         sp.call(['import','os'],shell=True)
         cmd1 = Cmd()
         try:
-            os.mkdir("aa")
             print sp.call(ffmpeg_call1.call)
 
         except WindowsError as e:
@@ -67,10 +77,8 @@ class FF(object):
             print cmd1.write("The file isn't support now","red")
             return
 
-
         for i in range(6):
             sys.stdout.write(cmd1.write("Succesfull","green"))
-            #sleep(0.1)
 
 
 class Parser(object):
@@ -88,8 +96,8 @@ def run():
 
     app = QtGui.QApplication(sys.argv)
     ui1 = UI()
+    ui1.path_set_edit(arg.path)
 
-    ui1.path_setEdit(arg.path)
     ui1.show()
     #ff1 = FF(path_arg)
     #ff1.convert()
@@ -106,8 +114,6 @@ pipe.stdout.readline()
 pipe.terminate()
 """
 
-def FFmpeg(args):
-    return args.path
 
 if __name__ == "__main__":
     run()
