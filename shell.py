@@ -17,7 +17,7 @@ import subprocess as sp
 import os
 import re
 from lib.cmd_color import Cmd
-from ffmpeg.fileseq import FileSequences
+from lib.fileseq import FileSequences
 import ffmpeg.call as ffmpeg
 
 
