@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2017-2018, Aydin Uzmez
+# Copyright (c) 2012-2015, Anima Istanbul
 #
-# This module is part of shell_ffmpeg and is released under the BSD 2
+# This module is part of anima-tools and is released under the BSD 2
 # License: http://www.opensource.org/licenses/BSD-2-Clause
 #   File
 #    - Author: Aydin Uzmez
-#    - File : __init__.py
+#    - File : __init__
 #    - Date: Jun 2017

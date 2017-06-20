@@ -5,5 +5,5 @@
 # License: http://www.opensource.org/licenses/BSD-2-Clause
 #   File
 #    - Author: Aydin Uzmez
-#    - File : __init__.py
+#    - File : __init__
 #    - Date: Jun 2017
