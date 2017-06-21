@@ -12,16 +12,13 @@
 
 import argparse
 import sys
-from time import sleep
-import subprocess as sp
 import os
-import re
 from lib.cmd_color import Cmd
 
 from PyQt4 import QtGui
-
+from PyQt4 import QtCore
 from ui.py.quickConvert import Ui_quickConvert
-import ffmpeg.call as ffmpeg
+from lib.ffmpeg import FFmpeg
 
 
 FFMPEG_BIN = "ffmpeg"
@@ -30,6 +27,7 @@ FFMPEG_BIN = "ffmpeg"
 class UI(QtGui.QMainWindow,Ui_quickConvert):
     def __init__(self,parent = None):
         QtGui.QWidget.__init__(self,parent)
+        self.arg = {}
         self.ui = Ui_quickConvert()
         self.ui.setupUi(self)
         self.ui.buttonBox.button(QtGui.QDialogButtonBox.Ok).clicked.connect(self.ok)
@@ -39,24 +37,25 @@ class UI(QtGui.QMainWindow,Ui_quickConvert):
         self.ui.path_edit.setText(path)
 
     def ok(self):
-        arg = {"path": str(self.ui.path_edit.text()),
-               "size": str(self.ui.size_combo.currentText()),
-               "format": str(self.ui.format_combo.currentText()),
-               "folder": str(self.ui.foldername_edit.text())
-               }
+        self.arg = {"path": str(self.ui.path_edit.text()),
+                    "size": str(self.ui.size_combo.currentText()),
+                    "format": str(self.ui.format_combo.currentText()),
+                    "folder_name": str(self.ui.foldername_edit.text())
+                    }
 
-
-        #will_open_folder = os.path.join(os.getcwd(),arg["folder"])
-        if os.path.isdir(arg["folder"]):
-            print arg["folder"]
+        if os.path.isdir(self.arg["folder_name"]):
+            print self.arg["folder_name"]
             print "that file already exists"
         else:
-            os.mkdir(arg["folder"])
-            ff1 = FFmpeg(self.ui.path_edit.text())
-            ff1.convert()
+            os.mkdir(self.arg["folder_name"])
+            ffmpeg1 = FFmpeg(self.arg)
+            ffmpeg1.call()
+            #ff1 = FFmpeg(self.ui.path_edit.text())
+            #ff1.convert()
             sys.exit()
 
 
+"""
 class FFmpeg(object):
     def __init__(self,args):
         self.path = str(args)
@@ -64,7 +63,6 @@ class FFmpeg(object):
     def convert(self):
         print ("FFmpeg Convert Jpg "+'\n')
         print("File Path: " + self.path)
-        ffmpeg_call1 = ffmpeg.Call(self.path)
         sp.call(['import','os'],shell=True)
         cmd1 = Cmd()
         try:
@@ -79,7 +77,7 @@ class FFmpeg(object):
 
         for i in range(6):
             sys.stdout.write(cmd1.write("Succesfull","green"))
-
+"""
 
 class Parser(object):
     def __init__(self):
@@ -97,6 +95,7 @@ def run():
     app = QtGui.QApplication(sys.argv)
     ui1 = UI()
     ui1.path_set_edit(arg.path)
+
 
     ui1.show()
     #ff1 = FF(path_arg)

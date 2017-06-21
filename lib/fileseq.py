@@ -9,7 +9,6 @@
 #    - Date: May 2017
 
 import os
-import sys
 
 CURRENT_PATH = os.path.abspath(os.path.join(__file__,os.pardir+os.sep+os.pardir))
 TEST_PATH = os.path.join(CURRENT_PATH, "test")
