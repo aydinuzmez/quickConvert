@@ -27,7 +27,7 @@ class FileSequences(object):
             self.__spell_iterator()
             self.main_name = self.__divide_path_name(self.in_path_name)
         else:
-            print "Undefined"
+            print("Undefined")
 
 
     def name(self):
@@ -53,7 +53,7 @@ class FileSequences(object):
     def __divide_path_name(self, in_path_name):
         i = 0
         digit = []
-        print self.name_spell
+        print(self.name_spell)
         for spell in reversed(self.name_spell):
             if spell.isdigit() == False:
                 if i == 0:
@@ -129,5 +129,4 @@ if __name__ == '__main__':
     #path1 = os.path.join(TEST_PATH,"_ZERO","DOT","sh100.0000.exr")
     path1 = os.path.join(TEST_PATH,"_SINGLE","alpha.exr")
     filesequences1 = FileSequences(path1)
-    print filesequences1.name()+filesequences1.format()+filesequences1.ext()
-
+    print(filesequences1.name() + filesequences1.format() + filesequences1.ext())

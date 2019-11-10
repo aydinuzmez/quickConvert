@@ -42,4 +42,4 @@ class Cmd(object):
 
 if __name__ == '__main__':
     cmd1 = Cmd()
-    print cmd1.write("Successfull","default")
+    print(cmd1.write("Successfull", "default"))
