@@ -10,8 +10,12 @@
 
 from lib.fileseq import FileSequences
 import subprocess as sp
+import os
 
-FFMPEG = "ffmpeg"
+# C:/Users/Aydin/Desktop/quickConvert-master/Setup/Window
+current_path = os.path.dirname(os.path.realpath(__file__))
+
+FFMPEG = os.path.abspath(os.path.join(current_path, "..", "ffmpeg", "ffmpeg.exe"))
 
 
 class FFmpeg(object):
