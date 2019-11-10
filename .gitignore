@@ -2,3 +2,5 @@
 *.swp
 test/
 *~
+*.idea
+*.Thumbs.db
