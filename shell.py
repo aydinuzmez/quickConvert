@@ -13,20 +13,15 @@
 import argparse
 import sys
 import os
-from lib.cmd_color import Cmd
 
 from PyQt4 import QtGui
-from PyQt4 import QtCore
 from ui.py.quickConvert import Ui_quickConvert
 from lib.ffmpeg import FFmpeg
 
 
-FFMPEG_BIN = "ffmpeg"
-
-
-class UI(QtGui.QMainWindow,Ui_quickConvert):
-    def __init__(self,parent = None):
-        QtGui.QWidget.__init__(self,parent)
+class UI(QtGui.QMainWindow, Ui_quickConvert):
+    def __init__(self, parent=None):
+        QtGui.QWidget.__init__(self, parent)
         self.arg = {}
         self.ui = Ui_quickConvert()
         self.ui.setupUi(self)
@@ -44,40 +39,14 @@ class UI(QtGui.QMainWindow,Ui_quickConvert):
                     }
 
         if os.path.isdir(self.arg["folder_name"]):
-            print self.arg["folder_name"]
-            print "that file already exists"
+            print(self.arg["folder_name"])
+            print("that file already exists")
         else:
             os.mkdir(self.arg["folder_name"])
             ffmpeg1 = FFmpeg(self.arg)
             ffmpeg1.call()
-            #ff1 = FFmpeg(self.ui.path_edit.text())
-            #ff1.convert()
             sys.exit()
 
-
-"""
-class FFmpeg(object):
-    def __init__(self,args):
-        self.path = str(args)
-
-    def convert(self):
-        print ("FFmpeg Convert Jpg "+'\n')
-        print("File Path: " + self.path)
-        sp.call(['import','os'],shell=True)
-        cmd1 = Cmd()
-        try:
-            print sp.call(ffmpeg_call1.call)
-
-        except WindowsError as e:
-            print cmd1.write(e,"red")
-            return
-        except Exception:
-            print cmd1.write("The file isn't support now","red")
-            return
-
-        for i in range(6):
-            sys.stdout.write(cmd1.write("Succesfull","green"))
-"""
 
 class Parser(object):
     def __init__(self):
@@ -95,23 +64,9 @@ def run():
     app = QtGui.QApplication(sys.argv)
     ui1 = UI()
     ui1.path_set_edit(arg.path)
-
-
     ui1.show()
-    #ff1 = FF(path_arg)
-    #ff1.convert()
 
     sys.exit(app.exec_())
-
-"""
-command = [FFMPEG_BIN,
-           '-i', r"C:\Users\AYDINU\Desktop\ffmpeg\input\Casper_VIA_F1_%04d.exr", r"C:\Users\AYDINU\Desktop\ffmpeg\png\abc_%04d.jpg"]
-
-
-pipe = sp.Popen(command,stdout=sp.PIPE,bufsize=10**8)
-pipe.stdout.readline()
-pipe.terminate()
-"""
 
 
 if __name__ == "__main__":
