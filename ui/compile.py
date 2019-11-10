@@ -10,7 +10,7 @@
 
 
 import sys
-from PyQt4 import QtGui,uic
+from PyQt4 import QtGui, uic
 import os
 
 COMPILE_PATH = os.path.dirname(__file__)
@@ -22,7 +22,7 @@ UIFILE_PATH = os.path.join(UIFOLDER_PATH,"quickConvert.ui")
 PYFILE_PATH = os.path.join(PYFOLDER_PATH,"quickConvert.py")
 
 #UI_FILE = os.getcwd()
-print COMPILE_PATH
+print(COMPILE_PATH)
 
 def compile_ui():
     ui_file = file(UIFILE_PATH)
@@ -30,7 +30,7 @@ def compile_ui():
     uic.compileUi(ui_file,py_file)
     ui_file.close()
     py_file.close()
-    print "finished compiling"
+    print("finished compiling")
 
 
 compile_ui()
