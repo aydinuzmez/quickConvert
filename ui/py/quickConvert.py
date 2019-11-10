@@ -95,7 +95,8 @@ class Ui_quickConvert(object):
         QtCore.QMetaObject.connectSlotsByName(quickConvert)
 
     def retranslateUi(self, quickConvert):
-        quickConvert.setWindowTitle(QtGui.QApplication.translate("quickConvert", "quickConvert v0.01dev-ffmpeg", None, QtGui.QApplication.UnicodeUTF8))
+        quickConvert.setWindowTitle(
+            QtGui.QApplication.translate("quickConvert", "quickConvert v0.02dev", None, QtGui.QApplication.UnicodeUTF8))
         self.path_text.setText(QtGui.QApplication.translate("quickConvert", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
