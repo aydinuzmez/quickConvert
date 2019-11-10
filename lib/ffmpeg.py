@@ -39,14 +39,14 @@ class FFmpeg(object):
                                                                                                     self.size()
                                                                                                     )
         except Exception as e:
-            print e
+            print(e)
 
 
     def input(self):
-        print self.file_seq1.name() + self.file_seq1.format() + self.file_seq1.ext()
+        print(self.file_seq1.name() + self.file_seq1.format() + self.file_seq1.ext())
 
     def output(self):
-        print self.file_seq1.name() + self.file_seq1.format() + "." + self.__format
+        print(self.file_seq1.name() + self.file_seq1.format() + "." + self.__format)
 
     def size(self):
         if self.__size == "Same":
@@ -62,10 +62,10 @@ class FFmpeg(object):
             return ""
 
     def path(self):
-        print self.__path
+        print(self.__path)
 
     def format(self):
-        print self.__format
+        print(self.__format)
 
     def call(self):
         sp.call(self.__call)
