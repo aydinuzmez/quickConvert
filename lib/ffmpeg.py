@@ -10,13 +10,19 @@
 
 from lib.fileseq import FileSequences
 import subprocess as sp
+import sys
 import os
 
-# C:/Users/Aydin/Desktop/quickConvert-master/Setup/Window
-current_path = os.path.dirname(os.path.realpath(__file__))
+if hasattr(sys, "_MEIPASS"):
+    FFMPEG = os.path.abspath(os.path.join(sys._MEIPASS, "ffmpeg", "ffmpeg.exe"))
+else:
 
-FFMPEG = os.path.abspath(os.path.join(current_path, "..", "ffmpeg", "ffmpeg.exe"))
+    # C:/Users/Aydin/Desktop/quickConvert-master/Setup/Window
+    current_path = os.path.dirname(os.path.realpath(__file__))
 
+    FFMPEG = os.path.abspath(os.path.join(current_path, "ffmpeg.exe"))
+
+print(FFMPEG)
 
 class FFmpeg(object):
     def __init__(self, arg):
@@ -42,6 +48,7 @@ class FFmpeg(object):
                                                                                                     self.__folder_name,
                                                                                                     self.size()
                                                                                                     )
+            # print(self.__call)
         except Exception as e:
             print(e)
 
