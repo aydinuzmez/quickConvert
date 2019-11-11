@@ -4,3 +4,4 @@ test/
 *~
 *.idea
 *.Thumbs.db
+__pycache__
