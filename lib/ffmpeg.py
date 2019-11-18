@@ -76,7 +76,71 @@ class FFmpeg(object):
             return " -s 1280x720 "
 
         elif self.__size == "PAL":
-            return ""
+            return " -vf \"scale=720:432,pad=720:576:(ow-iw)/2:(oh-ih)/2,unsharp=3:3:0.75\" "
+
+    def subprocess(self, queue):
+        kuy1 = queue.get()
+        self.process = sp.Popen(kuy1, stdout=sp.PIPE, stderr=sp.STDOUT, universal_newlines=True)
+
+        while True:
+            line = self.process.stdout.readline().strip()
+            search_duration = re.compile("time= *\d+[:]\d+[:]\d+\W\d+").search(line)
+            search_frame = re.compile("frame= *\d+").search(line)
+            if not line == "":
+                if search_frame:
+                    self.completed_frame = int(search_frame.group().split("=")[1].strip())
+                    print self.completed_frame
+
+                    # if search_duration:
+                    #    completed_duration = search_duration.group().split("=")[1].strip()
+                    #    self.processing_duration = self.sexa_second(completed_duration)
+                    #    print "processing duration "+str(self.processing_duration)
+                    # print "Output: " +self.completed_frame
+            else:
+                self.completed_frame = -1
+                break
+
+        queue.task_done()
+
+    def sexa_second(self, sexagesimal):
+        """
+
+        :param sexagesimal: 
+        :return: milisecond 
+        """
+        input_split = str(sexagesimal).split(":")
+        hours = float(input_split[0]) * 3600
+        minutes = float(input_split[1]) * 60
+        second = float(input_split[2].split(".")[0])
+        microsecond = float(input_split[2].split(".")[1]) / 1000000
+        return hours + minutes + second + microsecond
+
+    def completed(self):
+        return self.completed_frame
+
+        # print self.process
+
+    def call(self):
+        start = time()
+        print self.processing_max()
+        t1 = Thread(target=self.subprocess, args=(kuyruk,))
+        t1.daemon = True
+        t1.start()
+        kuyruk.put(self.__call)
+        #t1.join()
+        print "%s saniye surdu" % (time()-start)
+        #sp.call(self.__call)
+
+    def makefolder(self):
+        path = os.path.join(self.file_seq1.dir_path(), self.__folder_name)
+
+        if os.path.isdir(path):
+            print(self.__folder_name)
+            print("that file already exists")
+            return False
+        else:
+            os.mkdir(path)
+            return True
 
     def path(self):
         print(self.__path)
