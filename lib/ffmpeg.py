@@ -14,11 +14,17 @@ import sys
 import os
 
 if hasattr(sys, "_MEIPASS"):
-    FFMPEG = os.path.abspath(os.path.join(sys._MEIPASS, "ffmpeg", "ffmpeg.exe"))
+    FFMPEG = os.path.abspath(os.path.join(sys._MEIPASS, "bin", "ffmpeg.exe"))
+    FFPROBE = os.path.abspath(os.path.join(sys._MEIPASS, "bin", "ffprobe.exe"))
+    print FFMPEG
+
 else:
 
     # C:/Users/Aydin/Desktop/quickConvert-master/Setup/Window
     current_path = os.path.dirname(os.path.realpath(__file__))
+    BIN_PATH = os.path.abspath(os.path.join(current_path,"..","bin"))
+    FFMPEG = os.path.join(BIN_PATH,"ffmpeg.exe")
+    FFPROBE = os.path.join(BIN_PATH,"ffprobe.exe")
 
     FFMPEG = os.path.abspath(os.path.join(current_path, "ffmpeg.exe"))
 
