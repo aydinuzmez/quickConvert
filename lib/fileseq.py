@@ -10,8 +10,7 @@
 
 import os
 
-CURRENT_PATH = os.path.abspath(os.path.join(__file__,os.pardir+os.sep+os.pardir))
-TEST_PATH = os.path.join(CURRENT_PATH, "test")
+
 
 
 class FileSequences(object):
@@ -41,6 +40,9 @@ class FileSequences(object):
 
     def digit(self):
         return self.seq_digit
+
+    def dir_path(self):
+        return os.path.dirname(self.in_path)
 
     def __name_sum_seq(self):
         self.seq_name = self.divide_seq_name[:-self.seq_length]
@@ -125,8 +127,13 @@ class FileSequences(object):
         print name_list
 """
 
+CURRENT_PATH = os.path.abspath(os.path.join(__file__,os.pardir+os.sep+os.pardir))
+TEST_PATH = os.path.join(CURRENT_PATH, "test")
+
 if __name__ == '__main__':
     #path1 = os.path.join(TEST_PATH,"_ZERO","DOT","sh100.0000.exr")
     path1 = os.path.join(TEST_PATH,"_SINGLE","alpha.exr")
     filesequences1 = FileSequences(path1)
-    print(filesequences1.name() + filesequences1.format() + filesequences1.ext())
+    print filesequences1.dir_path()
+    print path1
+    #print(filesequences1.name() + filesequences1.format() + filesequences1.ext())
