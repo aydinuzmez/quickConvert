@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:/Users/AYDINU/Documents/shell-ffmpeg/ui\ui\quickConvert.ui'
+# Form implementation generated from reading ui file 'C:\Users\AYDINU\Desktop\quickConvert\ui\ui\quickConvert.ui'
 #
-# Created: Tue Jun 20 17:45:18 2017
+# Created: Mon Nov 11 19:24:58 2019
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,8 @@ except AttributeError:
 class Ui_quickConvert(object):
     def setupUi(self, quickConvert):
         quickConvert.setObjectName(_fromUtf8("quickConvert"))
-        quickConvert.resize(499, 167)
+        quickConvert.resize(495, 161)
+        quickConvert.setMaximumSize(QtCore.QSize(16777215, 161))
         self.path_widget = QtGui.QWidget(quickConvert)
         self.path_widget.setObjectName(_fromUtf8("path_widget"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.path_widget)
@@ -54,6 +55,7 @@ class Ui_quickConvert(object):
         self.format_combo.setObjectName(_fromUtf8("format_combo"))
         self.format_combo.addItem(_fromUtf8(""))
         self.format_combo.addItem(_fromUtf8(""))
+        self.format_combo.addItem(_fromUtf8(""))
         self.file_attribute.addWidget(self.format_combo, 0, 3, 1, 1)
         self.size_combo = QtGui.QComboBox(self.path_widget)
         self.size_combo.setObjectName(_fromUtf8("size_combo"))
@@ -78,25 +80,32 @@ class Ui_quickConvert(object):
         self.horizontalLayout_2.addLayout(self.formLayout)
         quickConvert.setCentralWidget(self.path_widget)
         self.menubar = QtGui.QMenuBar(quickConvert)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 499, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 495, 20))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
+        self.menuConvert = QtGui.QMenu(self.menubar)
+        self.menuConvert.setObjectName(_fromUtf8("menuConvert"))
         quickConvert.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(quickConvert)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         quickConvert.setStatusBar(self.statusbar)
         self.actionOpen = QtGui.QAction(quickConvert)
         self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
+        self.actionMultiply_Convert = QtGui.QAction(quickConvert)
+        self.actionMultiply_Convert.setObjectName(_fromUtf8("actionMultiply_Convert"))
+        self.actionMultiply = QtGui.QAction(quickConvert)
+        self.actionMultiply.setObjectName(_fromUtf8("actionMultiply"))
         self.menuFile.addAction(self.actionOpen)
+        self.menuConvert.addAction(self.actionMultiply)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuConvert.menuAction())
 
         self.retranslateUi(quickConvert)
         QtCore.QMetaObject.connectSlotsByName(quickConvert)
 
     def retranslateUi(self, quickConvert):
-        quickConvert.setWindowTitle(
-            QtGui.QApplication.translate("quickConvert", "quickConvert v0.02dev", None, QtGui.QApplication.UnicodeUTF8))
+        quickConvert.setWindowTitle(QtGui.QApplication.translate("quickConvert", "quickConvert v0.02dev", None, QtGui.QApplication.UnicodeUTF8))
         self.path_text.setText(QtGui.QApplication.translate("quickConvert", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -107,7 +116,8 @@ class Ui_quickConvert(object):
         self.foldername_edit.setText(QtGui.QApplication.translate("quickConvert", "jpg", None, QtGui.QApplication.UnicodeUTF8))
         self.format_text.setText(QtGui.QApplication.translate("quickConvert", "Format :", None, QtGui.QApplication.UnicodeUTF8))
         self.format_combo.setItemText(0, QtGui.QApplication.translate("quickConvert", "jpg", None, QtGui.QApplication.UnicodeUTF8))
-        self.format_combo.setItemText(1, QtGui.QApplication.translate("quickConvert", "tga", None, QtGui.QApplication.UnicodeUTF8))
+        self.format_combo.setItemText(1, QtGui.QApplication.translate("quickConvert", "png", None, QtGui.QApplication.UnicodeUTF8))
+        self.format_combo.setItemText(2, QtGui.QApplication.translate("quickConvert", "tga", None, QtGui.QApplication.UnicodeUTF8))
         self.size_combo.setItemText(0, QtGui.QApplication.translate("quickConvert", "Same", None, QtGui.QApplication.UnicodeUTF8))
         self.size_combo.setItemText(1, QtGui.QApplication.translate("quickConvert", "1920x1080", None, QtGui.QApplication.UnicodeUTF8))
         self.size_combo.setItemText(2, QtGui.QApplication.translate("quickConvert", "1280x720", None, QtGui.QApplication.UnicodeUTF8))
@@ -118,5 +128,8 @@ class Ui_quickConvert(object):
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:5px; margin-bottom:5px; margin-left:5px; margin-right:5px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600;\">*Size :</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("quickConvert", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuConvert.setTitle(QtGui.QApplication.translate("quickConvert", "Convert", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setText(QtGui.QApplication.translate("quickConvert", "Open", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMultiply_Convert.setText(QtGui.QApplication.translate("quickConvert", "Multiply Convert", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMultiply.setText(QtGui.QApplication.translate("quickConvert", "Multiply", None, QtGui.QApplication.UnicodeUTF8))
 
