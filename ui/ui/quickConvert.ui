@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>499</width>
-    <height>167</height>
+    <width>495</width>
+    <height>161</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>161</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>quickConvert v0.01dev-ffmpeg</string>
+   <string>quickConvert v0.02dev</string>
   </property>
   <widget class="QWidget" name="path_widget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -74,12 +80,17 @@ p, li { white-space: pre-wrap; }
            <widget class="QComboBox" name="format_combo">
             <item>
              <property name="text">
-              <string>Jpg</string>
+              <string>jpg</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Tga</string>
+              <string>png</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>tga</string>
              </property>
             </item>
            </widget>
@@ -99,6 +110,11 @@ p, li { white-space: pre-wrap; }
             <item>
              <property name="text">
               <string>1280x720</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PAL</string>
              </property>
             </item>
            </widget>
@@ -141,7 +157,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>499</width>
+     <width>495</width>
      <height>20</height>
     </rect>
    </property>
@@ -151,12 +167,29 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionOpen"/>
    </widget>
+   <widget class="QMenu" name="menuConvert">
+    <property name="title">
+     <string>Convert</string>
+    </property>
+    <addaction name="actionMultiply"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuConvert"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionMultiply_Convert">
+   <property name="text">
+    <string>Multiply Convert</string>
+   </property>
+  </action>
+  <action name="actionMultiply">
+   <property name="text">
+    <string>Multiply</string>
    </property>
   </action>
  </widget>
