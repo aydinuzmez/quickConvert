@@ -18,8 +18,13 @@ COMPILE_PATH = os.path.dirname(__file__)
 UIFOLDER_PATH = os.path.join(COMPILE_PATH,"ui")
 PYFOLDER_PATH = os.path.join(COMPILE_PATH,"py")
 
+# quickConvert
 UIFILE_PATH = os.path.join(UIFOLDER_PATH,"quickConvert.ui")
 PYFILE_PATH = os.path.join(PYFOLDER_PATH,"quickConvert.py")
+
+# setup
+#UIFILE_PATH = os.path.join(UIFOLDER_PATH,"setup.ui")
+#PYFILE_PATH = os.path.join(PYFOLDER_PATH,"setup.py")
 
 #UI_FILE = os.getcwd()
 print(COMPILE_PATH)
