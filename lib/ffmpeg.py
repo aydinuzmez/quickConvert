@@ -8,10 +8,18 @@
 #    - File : ffmpeg
 #    - Date: Jun 2017
 
+import sys
+
+import os
+
 from lib.fileseq import FileSequences
 import subprocess as sp
-import sys
-import os
+from Queue import Queue
+import re
+import json
+from threading import Thread
+from time import time
+
 
 if hasattr(sys, "_MEIPASS"):
     FFMPEG = os.path.abspath(os.path.join(sys._MEIPASS, "bin", "ffmpeg.exe"))
@@ -26,9 +34,8 @@ else:
     FFMPEG = os.path.join(BIN_PATH,"ffmpeg.exe")
     FFPROBE = os.path.join(BIN_PATH,"ffprobe.exe")
 
-    FFMPEG = os.path.abspath(os.path.join(current_path, "ffmpeg.exe"))
 
-print(FFMPEG)
+kuyruk = Queue()
 
 class FFmpeg(object):
     def __init__(self, arg):
@@ -37,27 +44,55 @@ class FFmpeg(object):
         self.__folder_name = arg["folder_name"]
         self.__path = arg["path"]
 
+        self.process= ""
+        self.completed_frame = 0
+        if not self.__folder_name == "":
+            self.__folder_name = self.__folder_name+"/"
+
         self.file_seq1 = FileSequences(self.__path)
         self.__input_name = self.file_seq1.name() + self.file_seq1.format() + self.file_seq1.ext()
         self.__output_name = self.file_seq1.name() + self.file_seq1.format() + "." + self.__format
+        self.file_seq1.dir_path()
+
 
         try:
+            self.ffprobe_output = self.start_ffprobe()
             #if int(self.file_seq1.digit()) == 0:
             #    self.call = FFMPEG+" -i {0} {1}/{2}".format(self.__input_name,
             #                                                self.__folder_name,
             #                                                self.__output_name)
             #    print self.call
             #else:
-            self.__call = FFMPEG + " -start_number {0} -i {1} {4} -start_number {0} {3}/{2}".format(self.file_seq1.digit(),
-                                                                                                    self.__input_name,
-                                                                                                    self.__output_name,
-                                                                                                    self.__folder_name,
+            self.__call = FFMPEG + " -start_number {0} -i {1} {4} -start_number {0} {3}".format(self.file_seq1.digit(),
+                                                                                                    os.path.join(self.file_seq1.dir_path(),self.__input_name),
+                                                                                                    os.path.join(self.file_seq1.dir_path(),self.__output_name),
+                                                                                                    os.path.join(self.file_seq1.dir_path(),self.__folder_name,self.__output_name),
                                                                                                     self.size()
                                                                                                     )
-            # print(self.__call)
         except Exception as e:
             print(e)
 
+    def start_ffprobe(self):
+        """
+
+        :return: json 
+        """
+        cmd_input = FFPROBE + " -v quiet -start_number {1} -print_format json " \
+                    "-show_format -show_streams {0}".format(os.path.join(self.file_seq1.dir_path(),self.__input_name),
+                                                            self.file_seq1.digit())
+        cmd_sp = sp.Popen(cmd_input, stdout=sp.PIPE)
+        output, output_err = cmd_sp.communicate()
+        print cmd_input
+        print output
+        out_json = json.loads(output)
+        return out_json
+
+    def processing_max(self):
+        """
+
+        :return: second be float 
+        """
+        return self.ffprobe_output["streams"][0]["duration_ts"]
 
     def input(self):
         print(self.file_seq1.name() + self.file_seq1.format() + self.file_seq1.ext())
@@ -148,6 +183,4 @@ class FFmpeg(object):
     def format(self):
         print(self.__format)
 
-    def call(self):
-        sp.call(self.__call)
 
