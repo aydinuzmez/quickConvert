@@ -4,8 +4,8 @@ Image Sequence Converting quickly in Windows.
 
 ## Screenshot
 
-![screenshot](https://drive.google.com/file/d/1vuXxbdzjwF9CuFQ5A2Lngi0sy7TtiCbS/view?usp=sharing)
-![screenshot](https://lh3.googleusercontent.com/8CAunuPm53WeCltKLm-KbislO1vL1kmLGdN3HPrasQu1z7nwbyYiLOjouYOrC6FjKsk_AQhu8oj6)
+![screenshot](https://lh5.googleusercontent.com/r1e2Xo7m8Xsf5haJqV-Ez0zcBErzkVxNwBmTKVr-XD-_LI8672Nc4cdYACtzrW88efHcdsBN7aNbQg=w1364-h458)
+![screenshot](https://lh6.googleusercontent.com/40qFu4zENPfZ4D4xeCHEEcBCDUEWLSplZGNInkQ_yJg7DcofAXL09HUUPIRfXw7usJg7W6soznG7JA=w1364-h810)
 
 ## Right Click Context Setup
 
